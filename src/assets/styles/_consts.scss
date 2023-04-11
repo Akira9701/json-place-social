@@ -1,0 +1,27 @@
+$sm-breakpoint: 600px;
+$md-breakpoint: 900px;
+$lg-breakpoint: 1200px;
+
+
+
+@mixin fromDeskToMob {
+    @media screen and (min-width: $md-breakpoint) {
+        display: none;
+    }
+    @media screen and (max-width: $md-breakpoint) {
+        display: block;
+    }
+}
+
+@mixin fromMobToDesk {
+    @media screen and (min-width: $md-breakpoint) {
+        display: block;
+    }
+    @media screen and (max-width: $md-breakpoint) {
+        display: none;
+    }
+}
+
+@mixin a($color) {
+    background: $color;
+}

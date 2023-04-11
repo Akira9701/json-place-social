@@ -1,51 +1,52 @@
 import React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
-import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GroupIcon from '@mui/icons-material/Group';
+import { useNavigate } from 'react-router-dom';
+import { IRouteValue } from '../../types/routes';
 
-export default function SidebarMobile() {
-  const [value, setValue] = React.useState('recents');
+const SidebarMobile = () => {
+    const [value, setValue] = React.useState('recents');
+    const navigate = useNavigate();
+    const handleChange = (event: React.SyntheticEvent, valueLink: string) => {
+        setValue(valueLink);
+        navigate(`/${valueLink}`);
+    };
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+    return (
+        <aside className="nav_container-mobile">
+            <BottomNavigation
+                sx={{
+                    width: '100%',
+                    backgroundColor: '#242424',
+                    borderTop: 'solid #1976d2 0.1px',
+                }}
+                value={value}
+                onChange={handleChange}
+            >
+                <BottomNavigationAction
+                    sx={{ color: 'white' }}
+                    label="Posts"
+                    value="all-posts"
+                    icon={<FavoriteIcon />}
+                />
 
-  return (
-    <aside>
-      <BottomNavigation
-        sx={{
-          width: '100%',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: '#242424',
-        }}
-        value={value}
-        onChange={handleChange}
-      >
-        <BottomNavigationAction
-          sx={{ color: 'white' }}
-          label="Posts"
-          value="favorites"
-          icon={<FavoriteIcon />}
-        />
-        <BottomNavigationAction
-          sx={{ color: 'white' }}
-          label="Profile"
-          value="nearby"
-          icon={<LocationOnIcon />}
-        />
-        <BottomNavigationAction
-          sx={{ color: 'white' }}
-          label="Friends"
-          value="folder"
-          icon={<FolderIcon />}
-        />
-      </BottomNavigation>
-    </aside>
-  );
-}
+                <BottomNavigationAction
+                    sx={{ color: 'white' }}
+                    label="Profile"
+                    value="profile"
+                    icon={<AccountCircleIcon />}
+                />
+                <BottomNavigationAction
+                    sx={{ color: 'white' }}
+                    label="Friends"
+                    value="friends"
+                    icon={<GroupIcon />}
+                />
+            </BottomNavigation>
+        </aside>
+    );
+};
+export default SidebarMobile;

@@ -1,0 +1,63 @@
+// @use 'consts' as v;
+@import "./consts";
+
+.nav_container-mobile{
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+    background: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include fromDeskToMob;
+
+
+}
+
+.nav_container-desktop{
+    a{
+        text-decoration: none;
+        width: 100%;
+        color: white;
+        span{
+           
+        }
+        
+    }
+
+        .nav_container-desktop-item-text{
+            
+            span{
+                font-size: 20px;
+                width: fit-content;
+            }
+            span::after{
+                transition-duration: 0.3s;
+                display: block;
+                width: 0%;
+                height: 1px;
+                background: white;
+                content: "";
+            }
+
+
+        }
+    
+
+    .nav_container-desktop-active-item {
+        .nav_container-desktop-item-text{
+
+            span::after{
+                width: 100%;
+
+            }
+
+
+        }
+    }
+    max-width: 360px;
+    @include fromMobToDesk;
+
+}
+
